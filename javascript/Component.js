@@ -1,0 +1,1 @@
+const myColours = ['#00BCD4', '#BDBDBD','#CDDC39', '#EC407A','#9C27B0'];
