@@ -159,3 +159,21 @@ Symbol is a built-in object whose constructor returns a symbol primitive — als
 ## 6. Primitive type: BigInt:
 * Numbers in JavaScript are represented as double-precision floats. This means they have limited precision. The Number.MAX_SAFE_INTEGER constant gives the greatest possible integer that can safely be incremented. Its value is 2**53 - 1.
 * If we do max + 1, then max + 2, then max + 100, you will get the same results, there is no way to tell whether it’s accurate or not. Any calculation on integers outside the safe integer range (i.e. from Number.MIN_SAFE_INTEGER to Number.MAX_SAFE_INTEGER) potentially loses precision. For this reason, we can only rely on numeric integer values within the safe range.
+
+## Reference Type and Object
+```javascript
+let fruit = "orange";
+let color = fruit;
+// color is "orange" and fruit is also "orange"
+fruit = "watermelon";
+// fruit now is "watermelon" and color is still "orange"
+
+// however when working with arrays and objects, they are stored as reference type, like pointers in C
+let nums = ['1','2','3','4'];
+let otherNums = nums; // this is similar to pointers in C
+// when we modify nums, otherNums are also updated.
+
+// therefore we use const for arrays and objects
+// and we use let for primitive types
+```
+
