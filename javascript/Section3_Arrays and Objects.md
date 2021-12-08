@@ -256,4 +256,74 @@ userReview['queenBee49'] += 1.0; // we can use all arithmetic operation
 
 ## check equal method
 similar to java, we need to check if every single field is equal to determine if two objects are equal
+
+# Advanced Array Functions
+## forEach
+forEach accepts a callback function, calls the function once per element in the array
+```javascript
+const nums = [1,3,5,7,9,11,13]
+nums.forEach(function(num){
+    console.log(num) // print the array
+})
+
+function printTriple(n){
+    console.log(n*3);
+}
+nums.forEach(printTriple); // prints the triplets
+
+const books = [{
+    title: 'Good Omens',
+    authors: ['Terry Pratchett', 'Neil Gaiman'],
+    rating: 4.25
+  },
+  {
+    title: 'Bone: The Complete Edition',
+    authors: ['Jeff Smith'],
+    rating: 4.42
+  },
+  {
+    title: 'American Gods',
+    authors: ['Neil Gaiman'],
+    rating: 4.11
+  },
+  {
+    title: 'A Gentleman in Moscow',
+    authors: ['Amor Towles'],
+    rating: 4.36
+  }
+]
+
+books.forEach(function(book){
+    console.log(book.title.toUpperCase());
+})
+
+books.map(function(book){
+    return book.title;
+})
+```
+
+## .map
+* creates a new array with the results of calling a callback on every element in the array
+```javascript
+const texts = ['rofl', 'lol', 'omg', 'ttyl'];
+const caps = texts.map(function(t){
+  return t.toUpperCase(); // we need to return the value, this value gets added to the new array
+});
+texts;
+caps;
+
+// get only the even numbers
+const numbers = [20,21,22,23,24,25,26,27];
+const half = numbers.map(function(n){
+    if(n % 2 == 0){
+        return n;
+    }
+})
+const even = half.filter(function(num){
+  return num != undefined;
+});
+
+texts.map(function(text){
+    return text.to
+})
 ```
