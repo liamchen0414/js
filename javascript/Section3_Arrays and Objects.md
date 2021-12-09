@@ -327,3 +327,110 @@ texts.map(function(text){
     return text.to
 })
 ```
+## find
+> returns the value of the FIRST match in the array that satisfies the provided testing function
+```javascript
+let movies = [
+    "The Fantatistic Mr. Fox",
+    "Mr. and Mrs. Smith",
+    "Mrs. Doubefire",
+    "Mr. Deeds"
+]
+
+const result = movies.find(movie => {
+    // loop over the movies array and check if every element includes something
+    return movie.includes("Mrs");
+});
+
+const movie2 = movies.find(m => m.indexOf("Mrs") === 0) // movie starts with Mrs
+```
+
+## filter
+> Creates a new array with all elements that pass the test implemented by the provided function
+```javascript
+const nums = [1,3,3,23,4,6,732,45,6,7,2,43]
+const odd = nums.filter(n => n % 2 === 1)
+// odd = [1, 3, 3, 23, 45, 7, 43]
+// nums unchanged = [1, 3, 3, 23, 4, 6, 732, 45, 6, 7, 2, 43]
+// const goodBooks = books.filter(b=>b.rating > 4.3), get all the books above 4.3
+const books = [{
+    title: 'Good Omens',
+    authors: ['Terry Pratchett', 'Neil Gaiman'],
+    rating: 4.25,
+    genres: ['fiction', 'fantasy']
+  },
+  {
+    title: 'Changing My Mind',
+    authors: ['Zadie Smith'],
+    rating: 3.83,
+    genres: ['nonfiction', 'essays']
+  },
+  {
+    title: 'Bone: The Complete Edition',
+    authors: ['Jeff Smith'],
+    rating: 4.42,
+    genres: ['fiction', 'graphic novel', 'fantasy']
+  },
+  {
+    title: 'American Gods',
+    authors: ['Neil Gaiman'],
+    rating: 4.11,
+    genres: ['fiction', 'fantasy']
+  },
+  {
+    title: 'A Gentleman in Moscow',
+    authors: ['Amor Towles'],
+    rating: 4.36,
+    genres: ['fiction', 'historical fiction']
+  },
+  {
+    title: 'The Name of the Wind',
+    authors: ['Patrick Rothfuss'],
+    rating: 4.54,
+    genres: ['fiction', 'fantasy']
+  },
+  {
+    title: 'The Overstory',
+    authors: ['Richard Powers'],
+    rating: 4.19,
+    genres: ['fiction', 'short stories']
+  },
+  {
+    title: 'The Way of Kings',
+    authors: ['Brandon Sanderson'],
+    rating: 4.65,
+    genres: ['fantasy', 'epic']
+  },
+  {
+    title: 'Lord of the flies',
+    authors: ['William Golding'],
+    rating: 3.67,
+    genres: ['fiction']
+  }
+]
+
+const fantasyGood = books.filter(book => book.rating > 4.3 && book.genres.includes('fantasy'))
+const fantasyGood2 = books.filter(function(book){
+    if(book.rating > 4.3 && book.genres.includes('fantasy'))
+        return book;
+})
+const fantasyGood3 = books.filter(book =>(
+    book.genres.includes('fantasy') ||
+    book.genres.includes('epic')
+))
+```
+
+## Every (not standard) and Some
+* The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+* The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. It doesn't modify the array.
+```javascript
+const isBelowThreshold = (currentValue) => currentValue < 40;
+const array1 = [1, 30, 39, 29, 10, 13];
+console.log(array1.every(isBelowThreshold)); // expected output: true
+
+const array = [1, 2, 3, 4, 5];
+// checks whether an element is even
+const even = (element) => element % 2 === 0;
+console.log(array.some(even));
+// expected output: true
+```
