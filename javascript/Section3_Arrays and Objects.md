@@ -434,3 +434,67 @@ const even = (element) => element % 2 === 0;
 console.log(array.some(even));
 // expected output: true
 ```
+
+## Reduce
+* The reduce() method executes a user-supplied “reducer” callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+
+```javascript
+// =============== Example =================
+// user reduce to sum up an array
+const array1 = [1, 2, 3, 4];
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+// 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+// expected output: 10
+// 5 + 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer, 5));
+// expected output: 15
+
+// =============== Example =================
+// use reduce to find the maximum value in the array
+const nums = [10, 8, 20, 19, 16, 3, 17, 6, 11, 5];
+const reducer = (prev, curr) => (prev > curr) ? prev : curr;
+// or as multiple line call back
+// const reducer = (prev, curr) => {
+//   if (prev > curr) {
+//     return prev
+//   } else
+//     return curr;
+// }
+console.log(nums.reduce(reducer));
+
+// =============== Example =================
+// tally, counter
+const votes = ['y','y','n','y','y','n','y','y','n','y','y','n','y','n','n'];
+const result = votes.reduce((tally, curr) => {
+  if(tally[curr])
+    tally[curr]++;
+  else
+    tally[curr] = 1;
+  return tally
+}, {}) // initial value is an empty object
+
+// a shorter way of doing it
+const votes = ['y','y','n','y','y','n','y','y','n','y','y','n','y','n','n'];
+const result = votes.reduce((tally, val) => {
+  tally[val] = (tally[val] || 0) + 1;
+  return tally
+}, {})
+
+// =============== Example =================
+// get book ratings
+const ratings = books.reduce((groupBooks, book) => {
+  const key = Math.floor(book.rating)
+  if(!groupBooks[key]){
+    groupBooks[key] = [];
+  }
+  groupBooks[key].push(book);
+  return groupBooks;
+}, {})
+
+// takeaway from the examples above,
+const something = iterables.reduce((prev, curr) => {
+  // do something
+  // return some values as prev;
+}, {}) // starts with empty object
+```
