@@ -120,3 +120,60 @@ const auth = {
 // auth.logout()
 // Goodbye Liam
 ```
+
+## this keyword
+> Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+* we add sayHi method to the Window object(global object)
+* when we define variable using var = something, we are adding it to the window, let and const work differently
+```javascript
+function sayHi(){
+  console.log("Hi");
+  console.log(this);
+}
+
+const person = {
+  first: 'Cherilyn',
+  last: 'Sarkisian',
+  nickName: 'Cher',
+  fullName(){
+    const {
+      first: f,
+      last: l,
+      nickName: n
+    } = this;
+    console.log(f + l +  n); // refers to current object
+  }
+}
+// this keyword lives in the function scope, if we refer this in the global scope, it will become the window
+```
+> arrow function doesn't have this(without using bind), traditional function has this
+```javascript
+laugh: () => {
+    console.log(this);
+    console.log(`${this.nickName} says haha`)
+}
+```
+
+### Example1
+```javascript
+const annoyer = {
+  phrases: ["literally", "cray cray", "I can't even", "Totes!", "YOLO", "Can't Stop, Won't Stop"],
+  start(){
+    this.pid = setInterval(() => {
+      console.log(this.pick());
+    }, 2000);
+  },
+  pick(){
+    const index = Math.floor(Math.random() * this.phrases.length)
+    return this.phrases[index];
+  },
+  stop(){
+    clearInterval(this.pid);
+  },
+}
+
+// annoyer.start()
+// annoyer.stop()
+```
+
+### Example2

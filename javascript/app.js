@@ -1,32 +1,26 @@
-const dict = [
-  {
-    name: "Tom",
-    password: 123
-  },
-  {
-    name: "Liam",
-    password: 345
-  }
-]
-
-user =   {
-  name: "Liam",
-  password: 345
-}
-
-const auth = {
-  name: "",
-  login(someone) {
-    const users = [...dict];
-    let found = users.find(user => someone.name === user.name && someone.password === user.password);
-    if(found){
-      console.log(`Welcome ${someone.name} !`);
-      this.name = someone.name;
-    } else {
-      console.log("Error: check your username or password");
+const myDeck = {
+  deck: [],
+  drawnCards: [],
+  suits: ['heart','diamons','spades','clubs'],
+  values: "2,3,4,5,6,7,8,9,10,J,Q,K,A",
+  makeDeck(){
+    const {
+      suits,
+      values,
+      deck
+    } = this;
+    for(let card of values.split(',')){
+      for(let suit of suits){
+        deck.push({
+          card,
+          suit
+        })
+      }
     }
   },
-  logout() {
-    console.log(`Goodbye ${this.name}`);
+  drawSingleCard(){
+    const card = this.deck.pop();
+    this.drawnCards.push(card)
+    return card; // can change to draw a random card
   }
 }
