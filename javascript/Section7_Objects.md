@@ -177,5 +177,49 @@ const annoyer = {
 ```
 
 ### Example2
-
+```javascript
+const myDeck = {
+  deck: [],
+  drawnCards: [],
+  suits: ['heart','diamons','spades','clubs'],
+  values: "2,3,4,5,6,7,8,9,10,J,Q,K,A",
+  makeDeck(){
+    const {
+      suits,
+      values,
+      deck
+    } = this;
+    for(let card of values.split(',')){
+      for(let suit of suits){
+        deck.push({
+          card,
+          suit
+        })
+      }
+    }
+  },
+  drawSingleCard(){
+    const card = this.deck.pop();
+    this.drawnCards.push(card)
+    return card; // can change to draw a random card
+  },
+  drawMultipleCards(numCards){
+    const cards = []
+    for(let i = 0; i < numCards; i++){
+      cards.push(this.drawSingleCard());
+    }
+    return cards;
+  },
+  shuffle(){ // fisher-yates shuffle
+    const {
+      deck
+    } = this;
+    for(let i = deck.length - 1; i > 0; i--){
+      let j = Math.floor(Math.random() * (i+1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+      console.log(deck);
+    }
+  }
+}
+```
 

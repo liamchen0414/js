@@ -1,12 +1,12 @@
 h1 {
-    color: purple;
+  color: purple;
 }
 
 #special {
-    font-size: 80px;
-    color: teal;
+  font-size: 80px;
+  color: teal;
 }
 
 .highlight {
-    background-color: rgb(255, 255, 12);
+  background-color: rgb(255, 255, 12);
 }

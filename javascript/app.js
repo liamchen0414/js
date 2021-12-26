@@ -1,26 +1,12 @@
-const myDeck = {
-  deck: [],
-  drawnCards: [],
-  suits: ['heart','diamons','spades','clubs'],
-  values: "2,3,4,5,6,7,8,9,10,J,Q,K,A",
-  makeDeck(){
-    const {
-      suits,
-      values,
-      deck
-    } = this;
-    for(let card of values.split(',')){
-      for(let suit of suits){
-        deck.push({
-          card,
-          suit
-        })
-      }
-    }
-  },
-  drawSingleCard(){
-    const card = this.deck.pop();
-    this.drawnCards.push(card)
-    return card; // can change to draw a random card
-  }
-}
+const myImg = document.getElementById("2");
+
+document.getElementsByTagName;
+document.getElementsByClassName;
+
+myImg.style.transition = "all 3s";
+
+setInterval(() => {
+  const x = Math.floor(document.body.clientWidth * 0.5 * Math.random());
+  const y = Math.floor(document.body.clientHeight * 0.5 * Math.random());
+  myImg.style.transform = `translate(${x}px, ${y}px)`;
+}, 3000);
