@@ -102,12 +102,146 @@ document.querySelector("a[target]");
 - innerText returns all text contained by an element and all its child elements.
 - innerHtml returns all text, including html tags, that is contained by an element.
 
-### 8.2.2 Contents
+### 8.2.2 Form and values
 
-innerHTML
+```html
+<form action="">
+  <input type="text" placeholder="Name" />
+  <input type="password" placeholder="Password" />
+  <input type="checkbox" />
+  <input type="range" min="100" max="500" />
+  <input type="submit" />
+</form>
+```
 
-value
+```javascript
+document.querySelectorAll("input");
+const inputs = document.querySelectorAll("input");
+inputs[0].value; // the value of username
+inputs[1].value; // the value of password
+inputs[2].checked; // the value of checkbox
+document.querySelector("h1").querySelector("a").href =
+  "http://www.google.com.au";
+document.querySelector("h1").innerText; // get the text
+```
 
-parentElement
+### 8.2.3 Get and Set Attributes
 
-### 8.2.1 Common Properties and Methods
+> let attribute = element.getAttribute(attributeName);
+
+The getAttribute() method of the Element interface returns the value of a specified attribute on the element.
+
+> Element.setAttribute(name, value)
+
+Sets the value of an attribute on the specified element. If the attribute already exists, the value is updated; otherwise a new attribute is added with the specified name and value.
+
+```javascript
+const range = document.querySelector('input[type="range]');
+range.getAttribute("max");
+range.getAttribute("min");
+range.setAttribute("min", 1000);
+```
+
+### 8.2.4 Parent Element, Children Element and Siblings
+
+1. You can use .parentElement and .children[index] to traverse the object tree
+2. we can use .nextElementSibling and .previousElementSibling to traverse in the same object level
+
+### 8.2.5 Style Property
+
+1. Style property to read existing styles won't work unless styles are defined inline
+2. Style property is camel cased if more than one word in javascript
+3. However it is not a good way to figure out the style and set the style
+4. Inline style has higher order than other style decorations
+
+### 8.2.6 getComputedStyle
+
+```javascript
+const li = document.querySelector("li");
+const styles = getComputedStyle(li); // this returns all the CSS properties
+li.style.color = "pink"; // styles.color is now changed
+```
+
+### 8.2.7 apply style using class
+
+> when we want to reuse a property to some elements, we can define a new class and add that class to the classList.
+
+```javascipt
+
+```
+
+### 8.3 create elements
+
+> we need to either appendChild an element to a parent or parent.insertBefore(whatToInsert, whereToInsert)
+
+```javascript
+// add a header
+const newh2 = document.createElement("h2");
+newh2.classList.add("cssStyle");
+const section = document.querySelector("section");
+section.appendChild(newh2); // append to the end of the parent
+
+// add an image
+const img = document.createElement("img");
+img.src = "www.google.com.au";
+img.style.width = "300px";
+document.body.appendChild(img);
+
+// add a video
+const video = document.createElement("a");
+video.innerText = "myVideo";
+video.href = "www.youtube.com";
+const firstP = document.querySelector;
+firstP.appendChild(video);
+
+insertBefore(newNode, referenceNode);
+// Get the parent element
+let parentElement = document.getElementById("parentElement");
+// Get the parent's first child
+let theFirstChild = parentElement.firstChild;
+// Create a new element
+let newElement = document.createElement("div");
+// Insert the new element before the first child
+parentElement.insertBefore(newElement, theFirstChild);
+```
+
+> A better method is to use append and prepend
+
+```javascript
+let div = document.createElement("div");
+let p = document.createElement("p");
+let span = document.createElement("span");
+div.append(p);
+div.prepend(span);
+
+console.log(div.childNodes); // NodeList [ <span>, <p> ]
+```
+
+### 8.4 Remove Elements
+
+> The removeChild() method of the Node interface removes a child node from the DOM and returns the removed node.
+
+```javascript
+// To remove a specified element when knowing its parent node:
+let d = document.getElementById("top");
+let d_nested = document.getElementById("nested");
+let throwawayNode = d.removeChild(d_nested);
+
+// To remove a specified element without having to specify its parent node:
+let node = document.getElementById("nested");
+if (node.parentNode) {
+  node.parentNode.removeChild(node);
+}
+// To remove all children from an element:
+let element = document.getElementById("top");
+while (element.firstChild) {
+  element.removeChild(element.firstChild);
+}
+```
+
+> The Element.remove() method removes the element from the tree it belongs to.
+
+```javascript
+var el = document.getElementById("div-02");
+el.remove(); // Removes the div with the 'div-02' id
+```
