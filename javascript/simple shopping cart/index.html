@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <input id="item" placeholder="shopping list" type="text" />
+    <input id="add" value="add to basket" type="submit" />
+    <form>
+      <div class="value-button" id="decrease" onclick="decreaseValue()">-</div>
+      <input type="number" id="number" value="0" />
+      <div class="value-button" id="increase" onclick="increaseValue()">+</div>
+      <!-- https://codepen.io/chrisachinga/pen/MWwrZLJ -->
+    </form>
+    <ul id="list"></ul>
+    <script src="app.js"></script>
+  </body>
+</html>
