@@ -16,8 +16,6 @@ button.addEventListern("click", function () {
 });
 ```
 
-## Mouseover and Mouseout
-
 ## Click
 
 A simple counter event increase on click
@@ -40,12 +38,6 @@ reset.addEventListener("click", function () {
   value.textContent = count;
 });
 ```
-
-## Drag
-
-## Drop
-
-## Scroll
 
 ## Key Press
 
@@ -105,20 +97,73 @@ moveCoin();
 
 ## Example: Form
 
-For ReactJS, it does something such as sending a new get request etc. While for vanilla JS, what we normally do is to trigger some new JS events on the page.
-
 ```html
-<form>
-  <input type="text" placeholder="credit card" />
-  <label>
-    I agree to sell my soul to your company
-    <input type="checkbox" />
-  </label>
-  <select name="" id="">
-    <option value="Eggplant">Eggplant</option>
-    <option value="Asparagus">Asparagus</option>
-    <option value="Carrot">Carrot</option>
-  </select>
-  <input type="submit" />
-</form>
+<body>
+  <form id="sign-up" action="/Nooooo" method="get">
+    <input type="text" placeholder="credit card" id="cc" />
+    <label>
+      I agree to sell my soul to your company
+      <input type="checkbox" id="terms" />
+    </label>
+    <select name="" id="veggie">
+      <option value="Eggplant">Eggplant</option>
+      <option value="Asparagus">Asparagus</option>
+      <option value="Carrot">Carrot</option>
+    </select>
+    <input type="submit" />
+  </form>
+  <script src=" app.js"></script>
+</body>
 ```
+
+```javascript
+const form = document.querySelector("#sign-up");
+const cc = document.querySelector("#cc");
+const terms = document.querySelector("#terms");
+const veggie = document.querySelector("#veggie");
+
+form.addEventListener("submit", function (e) {
+  alert("test");
+  console.log("cc", cc.value);
+  console.log("terms", terms.checked);
+  console.log("veggie", veggie.value);
+  e.preventDefault(); // this stops the action of get request
+});
+```
+
+## Listen to input/changes in form
+
+- we want to keep on synching the data when user are typing
+
+```javascript
+const form = document.querySelector("#sign-up");
+const cc = document.querySelector("#cc");
+const terms = document.querySelector("#terms");
+const veggie = document.querySelector("#veggie");
+
+cc.addEventListener("input", (e) => {
+  console.log(e.target.value);
+});
+
+veggie.addEventListener("input", (e) => {
+  console.log(e.target.value);
+});
+
+terms.addEventListener("input", (e) => {
+  console.log(e.target.checked);
+});
+```
+
+- however, we can also use the callback to combine everything above
+
+```javascript
+const formData = {};
+for (let input of [cc, terms, veggie]) {
+  input.addEventListener("input", (e) => {
+    formData[e.target.name] =
+      e.target.name != "terms" ? e.target.value : e.target.checked;
+  });
+}
+```
+
+> difference between input and change event, input updates the data whenever we change the data, change blurs out input when losing focus
