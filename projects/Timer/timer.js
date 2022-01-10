@@ -1,3 +1,4 @@
+let frequency = 50;
 class Timer {
   constructor(duration, startBtn, pauseBtn, myCallbacks) {
     if (myCallbacks) {
@@ -13,10 +14,10 @@ class Timer {
   }
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.duration.value);
     }
     this.tick;
-    this.t = setInterval(this.tick, 1000);
+    this.t = setInterval(this.tick, frequency);
   };
   pause = () => {
     clearInterval(this.t);
@@ -26,8 +27,12 @@ class Timer {
       this.pause();
       if (this.onComplete) this.onComplete();
     } else {
-      if (this.onTick) this.onTick();
-      this.duration.value--;
+      if (this.onTick) {
+        this.duration.value = (this.duration.value - frequency / 1000).toFixed(
+          2
+        );
+        this.onTick(this.duration.value);
+      }
     }
   };
 }

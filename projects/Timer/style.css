@@ -1,0 +1,30 @@
+.timer {
+  position: relative;
+  display: inline-block;
+}
+
+#duration {
+  display: block;
+  border: 1px solid blue;
+  width: 240px;
+  font-size: 70px;
+  text-align: center;
+}
+
+.timer button {
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
