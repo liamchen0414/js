@@ -12,17 +12,6 @@ const debounce = (func, delay = 1000) => {
   };
 };
 
-// create anchor element
-function createAnchor(movie) {
-  const a = document.createElement("a");
-  a.classList.add("dropdown-item");
-  a.innerHTML = `
-    <img src="${movie.Poster}"/>
-    ${movie.Title}
-  `;
-  return a;
-}
-
 // build movie details
 const movieTemplate = (movieDetail) => {
   return `<article class="media">
